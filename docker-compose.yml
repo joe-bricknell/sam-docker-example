@@ -1,0 +1,12 @@
+version: "2.1"
+services:
+  sam-app-2:
+    build:
+      dockerfile: ./Dockerfile
+      context: .
+    ports:
+    - "3000:3000"
+    volumes:
+      - .:/var/opt
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: local invoke "name-of-lambda" -p 3000 --host 0.0.0.0
